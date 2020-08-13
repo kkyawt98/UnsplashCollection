@@ -7,7 +7,7 @@ data class CoverPhoto(
     @SerializedName("alt_description")
     val altDescription: String,
     @SerializedName("categories")
-    val categories: List<Any>,
+    val categories: List<String>,
     @SerializedName("color")
     val color: String,
     @SerializedName("created_at")

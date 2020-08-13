@@ -7,17 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
 import com.kyawt.mycollection.service.model.photo.PhotoItem
+import com.kyawt.mycollection.view.adapter.CategoryAdapter
 import com.kyawt.mycollection.view.adapter.PhotoListAdapter
 import com.kyawt.mycollection.view.viewholder.PhotoListViewHolder
+import com.kyawt.mycollection.viewmodel.CategoriesViewModel
 import com.kyawt.mycollection.viewmodel.PhotoListViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
     lateinit var photoListViewModel: PhotoListViewModel
+    private var categoriesViewModel: CategoriesViewModel = CategoriesViewModel()
+    lateinit var categoryAdapter: CategoryAdapter
     lateinit var photoListAdapter: PhotoListAdapter
     lateinit var viewManager:LinearLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +45,19 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
             this.adapter = photoListAdapter
             this.layoutManager = viewManager
         }
+
+        recycler_category.apply {
+            categoryAdapter =  CategoryAdapter()
+            viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
+            this.adapter = categoryAdapter
+            this.layoutManager = viewManager
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         photoListViewModel.loadData()
+        categoriesViewModel.loadData()
         observeViewModel()
     }
 
@@ -65,12 +76,19 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
             }
         })
 
+        categoriesViewModel.collectionResult.observe(this, Observer { isSuccess ->
+            recycler_category.visibility = View.VISIBLE
+            categoryAdapter.updateList(isSuccess)
+        })
+
         photoListViewModel.loadData()
+        categoriesViewModel.loadData()
     }
 
     override fun onResume() {
         super.onResume()
         photoListViewModel.loadData()
+        categoriesViewModel.loadData()
     }
 
     override fun Onclick(photo: PhotoItem) {

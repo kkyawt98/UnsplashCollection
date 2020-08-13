@@ -15,7 +15,7 @@ private val mClickListener: ClickListener) : RecyclerView.ViewHolder(itemView) {
             .load(photo.urls.regular)
             .into(itemView.img_home)
 
-        itemView.txt_user_name.text = photo.user.username
+        itemView.txt_user_name.text = photo.user.instagramUsername
 
         Glide.with(itemView)
             .load(photo.user.profileImage.small)
