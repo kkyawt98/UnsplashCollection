@@ -1,8 +1,11 @@
 package com.kyawt.mycollection.service.model.collection
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Ancestry(
     @SerializedName("category")
     val category: Category,
@@ -10,4 +13,4 @@ data class Ancestry(
     val subcategory: Subcategory,
     @SerializedName("type")
     val type: Type
-)
+):Parcelable

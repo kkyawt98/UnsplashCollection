@@ -1,11 +1,14 @@
 package com.kyawt.mycollection.service.model.collection
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class CollectionItem(
     @SerializedName("cover_photo")
-    val coverPhoto: CoverPhoto,
+    val coverPhoto: CoverPhoto?,
     @SerializedName("curated")
     val curated: Boolean,
     @SerializedName("description")
@@ -13,7 +16,7 @@ data class CollectionItem(
     @SerializedName("featured")
     val featured: Boolean,
     @SerializedName("id")
-    val id: Int,
+    val id: String,
     @SerializedName("last_collected_at")
     val lastCollectedAt: String,
     @SerializedName("links")
@@ -36,4 +39,4 @@ data class CollectionItem(
     val updatedAt: String,
     @SerializedName("user")
     val user: UserXX
-)
+): Parcelable

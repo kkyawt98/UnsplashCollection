@@ -18,10 +18,10 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
         app:itemHorizontalTranslationEnabled="true"
-        android:background="#DAA3AD"
+        android:background="@color/colorPrimary"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu"
         app:itemIconTint="#CB6882"
-        app:itemTextColor="#CB6882"/>
+        app:itemTextColor="@color/colorAccent"/>
 
 </RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DAA3AD">
+    android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_viewall"
+            app:tint="@color/cardview_dark_background"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toRightOf="@id/txt_categories"
             app:layout_constraintRight_toLeftOf="@id/txt_view_all"
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:text="view all"
+            android:textColor="@color/cardview_dark_background"
             app:layout_constraintBottom_toBottomOf="@+id/img_viewAll"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_viewAll" />

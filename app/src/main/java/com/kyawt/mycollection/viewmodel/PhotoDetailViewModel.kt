@@ -23,9 +23,10 @@ class PhotoDetailViewModel(application: Application) : AndroidViewModel(applicat
 
     var photoDetail = MutableLiveData<Detail>()
     private var photoRepository : PhotoRepository = PhotoRepository()
-    fun loadData(movie_id :  String){
+
+    fun loadData(photoId :  String){
         viewModelScope.launch {
-            val result = photoRepository.getPhotoDetail(movie_id)
+            val result = photoRepository.getPhotoDetail(photoId)
             photoDetail.value = result
         }
     }

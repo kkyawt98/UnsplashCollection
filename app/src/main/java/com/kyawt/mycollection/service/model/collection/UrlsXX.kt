@@ -1,8 +1,11 @@
 package com.kyawt.mycollection.service.model.collection
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class UrlsXX(
     @SerializedName("full")
     val full: String,
@@ -14,4 +17,4 @@ data class UrlsXX(
     val small: String,
     @SerializedName("thumb")
     val thumb: String
-)
+):Parcelable

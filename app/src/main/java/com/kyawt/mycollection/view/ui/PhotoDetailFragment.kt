@@ -12,6 +12,7 @@ import com.kyawt.mycollection.R
 import com.kyawt.mycollection.databinding.FragmentPhotoDetailBinding
 import com.kyawt.mycollection.service.model.photo.PhotoItem
 import com.kyawt.mycollection.view.constance.Constant
+import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.viewmodel.PhotoDetailViewModel
 import kotlinx.android.synthetic.main.appbar_layout.*
 import java.util.zip.Inflater
@@ -45,8 +46,7 @@ class PhotoDetailFragment : Fragment() {
         val detail = arguments?.getParcelable<PhotoItem>(Constant.Bundle_Key)
         photoDetailViewModel.setID(detail!!)
 
-        val photo_id = detail.id
-
+        val photo_id = detail.id.toString()
         photoDetailViewModel.loadData(photo_id)
 
         appBarAction()

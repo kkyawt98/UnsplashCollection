@@ -1,12 +1,9 @@
-package com.kyawt.mycollection.service.model.collection
+package com.kyawt.mycollection.service.model.collectionDetail
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class LinksXXX(
+data class Links(
     @SerializedName("download")
     val download: String,
     @SerializedName("download_location")
@@ -15,4 +12,4 @@ data class LinksXXX(
     val html: String,
     @SerializedName("self")
     val self: String
-):Parcelable
+)

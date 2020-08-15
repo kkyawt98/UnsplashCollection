@@ -1,22 +1,19 @@
-package com.kyawt.mycollection.service.model.collection
+package com.kyawt.mycollection.service.model.collectionDetail
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class CoverPhotoX(
+data class CollectionDetailItem(
     @SerializedName("alt_description")
     val altDescription: String,
     @SerializedName("categories")
-    val categories: List<String>,
+    val categories: List<Any>,
     @SerializedName("color")
     val color: String,
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("current_user_collections")
-    val currentUserCollections: List<String>,
+    val currentUserCollections: List<Any>,
     @SerializedName("description")
     val description: String,
     @SerializedName("height")
@@ -28,17 +25,17 @@ data class CoverPhotoX(
     @SerializedName("likes")
     val likes: Int,
     @SerializedName("links")
-    val links: LinksXXX,
+    val links: Links,
     @SerializedName("promoted_at")
     val promotedAt: String,
     @SerializedName("sponsorship")
-    val sponsorship: String,
+    val sponsorship: Any,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("urls")
-    val urls: UrlsXX,
+    val urls: Urls,
     @SerializedName("user")
-    val user: UserX,
+    val user: User,
     @SerializedName("width")
     val width: Int
-):Parcelable
+)

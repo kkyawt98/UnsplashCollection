@@ -38,49 +38,18 @@ class MainActivity : AppCompatActivity() {
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
-//        val bottomNavigation = findNavController(R.id.container)
+        val bottomNavigation = findNavController(R.id.container)
 
 
-//        bottomNav.setupWithNavController(bottomNavigation)
+        bottomNav.setupWithNavController(bottomNavigation)
 
-//        bottomNavigation.addOnDestinationChangedListener { _, destination, _ ->
-//            if (destination.id == R.id.photoDetailFragment){
-//                bottomNav.visibility = View.GONE
-//            }else{
-//                bottomNav.visibility = View.VISIBLE
-//            }
-//        }
-
-
-        bottomNav.setOnNavigationItemSelectedListener {item ->
-            when(item.itemId){
-                R.id.home -> {
-                    homeFragment = HomeFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, homeFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-
-                R.id.collection -> {
-                    collectionFragment = CollectionFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, collectionFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-
-                R.id.account -> {
-                    accountFragment = AccountFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, accountFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
+        bottomNavigation.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.photoDetailFragment){
+                bottomNav.visibility = View.GONE
+            }else{
+                bottomNav.visibility = View.VISIBLE
             }
-
-            true
-
         }
+
     }
 }

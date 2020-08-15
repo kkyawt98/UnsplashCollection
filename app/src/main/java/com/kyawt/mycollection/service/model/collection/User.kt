@@ -1,8 +1,11 @@
 package com.kyawt.mycollection.service.model.collection
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class User(
     @SerializedName("accepted_tos")
     val acceptedTos: Boolean,
@@ -33,9 +36,9 @@ data class User(
     @SerializedName("total_photos")
     val totalPhotos: Int,
     @SerializedName("twitter_username")
-    val twitterUsername: Any,
+    val twitterUsername: String,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("username")
     val username: String
-)
+):Parcelable
