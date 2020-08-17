@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.kyawt.mycollection.R
 import com.kyawt.mycollection.databinding.FragmentPhotoDetailBinding
 import com.kyawt.mycollection.service.model.photo.PhotoItem
@@ -56,22 +57,16 @@ class PhotoDetailFragment : Fragment() {
     fun appBarAction(){
 
         txt_close.setOnClickListener {
-
-            homeFragment = HomeFragment()
-            activity!!.supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, homeFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
+            findNavController().navigate(R.id.action_photoDetailFragment_to_homeFragment)
         }
     }
 
-    companion object{
-        fun newInstance(photo: PhotoItem) = PhotoDetailFragment().also {
-            val bundle = Bundle()
-            bundle.putParcelable(Constant.Bundle_Key,photo)
-            it.arguments = bundle
-        }
-    }
+//    companion object{
+//        fun newInstance(photo: PhotoItem) = PhotoDetailFragment().also {
+//            val bundle = Bundle()
+//            bundle.putParcelable(Constant.Bundle_Key,photo)
+//            it.arguments = bundle
+//        }
+//    }
 
 }

@@ -15,12 +15,12 @@ class SubCategoryViewModel(application: Application) : AndroidViewModel(applicat
     var loading : MutableLiveData<Boolean> = MutableLiveData()
     fun getLoading() : LiveData<Boolean> = loading
 
-    var category_id : MutableLiveData<CollectionItem> = MutableLiveData()
+    var collectionItemLiveData : MutableLiveData<CollectionItem> = MutableLiveData()
     val categoryID : LiveData<CollectionItem>
-    get() = category_id
+    get() = collectionItemLiveData
 
     fun setCategoryID(collection: CollectionItem){
-        category_id.value = collection
+        collectionItemLiveData.value = collection
     }
     var subCategoryResult = MutableLiveData<CollectionDetail>()
 

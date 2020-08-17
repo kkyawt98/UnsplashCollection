@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
 import com.kyawt.mycollection.service.model.collection.CollectionItem
 import com.kyawt.mycollection.service.model.photo.PhotoItem
 import com.kyawt.mycollection.view.adapter.CategoryAdapter
 import com.kyawt.mycollection.view.adapter.PhotoListAdapter
+import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.viewholder.CategoryViewHolder
 import com.kyawt.mycollection.view.viewholder.PhotoListViewHolder
 import com.kyawt.mycollection.viewmodel.CategoriesViewModel
@@ -94,19 +97,19 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener, CategoryView
     }
 
     override fun Onclick(photo: PhotoItem) {
-        val targetFragment = PhotoDetailFragment.newInstance(photo)
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, targetFragment)
-            .commit()
+        var bundle = Bundle()
+        bundle.putParcelable(Constant.Bundle_Key,photo)
+        this.arguments = bundle
+        findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment,bundle)
+
     }
 
     override fun onItemClick(category: CollectionItem) {
-        val targetFragment = CategoryFragment.newInstance(category)
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, targetFragment)
-            .commit()
+
+        var bundle = Bundle()
+        bundle.putParcelable(Constant.Bundle_Category_Key, category)
+        this.arguments = bundle
+        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment,bundle)
     }
 
 }
