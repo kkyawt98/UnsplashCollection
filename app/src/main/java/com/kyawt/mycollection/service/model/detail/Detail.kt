@@ -17,7 +17,7 @@ data class Detail(
     @SerializedName("description")
     val description: String,
     @SerializedName("downloads")
-    val downloads: Int,
+    val downloads: String,
     @SerializedName("exif")
     val exif: Exif,
     @SerializedName("height")
@@ -27,7 +27,7 @@ data class Detail(
     @SerializedName("liked_by_user")
     val likedByUser: Boolean,
     @SerializedName("likes")
-    val likes: Int,
+    val likes: String,
     @SerializedName("links")
     val links: Links,
     @SerializedName("location")
@@ -49,7 +49,7 @@ data class Detail(
     @SerializedName("user")
     val user: UserXXXX,
     @SerializedName("views")
-    val views: Int,
+    val views: String,
     @SerializedName("width")
     val width: Int
 )

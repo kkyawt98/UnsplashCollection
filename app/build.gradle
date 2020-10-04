@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -41,7 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-
     //    Bottom-nav
     implementation 'com.google.android.material:material:1.1.0'
 
@@ -76,5 +76,13 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+
+//    YOYO effect
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+
+//    Shimmer effect
+    implementation "com.github.skydoves:androidveil:1.0.9"
 
 }

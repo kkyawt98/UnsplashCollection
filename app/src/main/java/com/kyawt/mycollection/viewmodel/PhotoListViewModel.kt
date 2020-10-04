@@ -1,6 +1,7 @@
 package com.kyawt.mycollection.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,9 +19,14 @@ class PhotoListViewModel(application: Application) : AndroidViewModel(applicatio
     private var photoRepository : PhotoRepository = PhotoRepository()
     fun loadData(){
         loading.value = true
-        viewModelScope.launch {
-            val result = photoRepository.getPhotoList()
-            photoResult.value = result
-        }
+            viewModelScope.launch {
+                try {
+                    val result = photoRepository.getPhotoList()
+                    photoResult.value = result
+                }catch (e:Exception){
+                    Log.d("List", e.toString())
+                }
+
+            }
     }
 }

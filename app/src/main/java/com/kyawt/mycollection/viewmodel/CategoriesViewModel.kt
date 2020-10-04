@@ -1,5 +1,6 @@
 package com.kyawt.mycollection.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,10 +13,15 @@ class CategoriesViewModel() : ViewModel() {
     var collectionResult = MutableLiveData<Collection>()
     private var photoRepository = PhotoRepository()
 
-    fun loadData(){
+    fun loadData() {
         viewModelScope.launch {
-            val result = photoRepository.getCategories()
-            collectionResult.value = result
+            try {
+                val result = photoRepository.getCategories()
+                collectionResult.value = result
+            }catch (e:Exception){
+                Log.d("Category", e.toString())
+            }
+
         }
     }
 }

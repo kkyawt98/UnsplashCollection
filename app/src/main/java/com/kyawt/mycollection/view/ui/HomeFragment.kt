@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
@@ -64,6 +65,13 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener, CategoryView
         photoListViewModel.loadData()
         categoriesViewModel.loadData()
         observeViewModel()
+        buttons()
+    }
+
+    private fun buttons(){
+        img_viewAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_collectionFragment)
+        }
     }
 
     fun observeViewModel(){
@@ -100,7 +108,13 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener, CategoryView
         var bundle = Bundle()
         bundle.putParcelable(Constant.Bundle_Key,photo)
         this.arguments = bundle
-        findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment,bundle)
+        val navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.nav_default_enter_anim)
+            .setExitAnim(R.anim.nav_default_exit_anim)
+            .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
+            .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
+            .build()
+        findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment,bundle,navOptions)
 
     }
 
@@ -109,7 +123,13 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener, CategoryView
         var bundle = Bundle()
         bundle.putParcelable(Constant.Bundle_Category_Key, category)
         this.arguments = bundle
-        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment,bundle)
+        val navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.nav_default_enter_anim)
+            .setExitAnim(R.anim.nav_default_exit_anim)
+            .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
+            .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
+            .build()
+        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment,bundle,navOptions)
     }
 
 }

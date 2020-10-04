@@ -2,4 +2,5 @@
     <string name="app_name">MyCollection</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sub_label">The internet’s source of freely-usable images. Powered by creators everywhere.</string>
 </resources>
