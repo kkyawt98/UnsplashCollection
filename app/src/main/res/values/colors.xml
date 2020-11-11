@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F4F4F4</color>
+    <color name="colorAccent">#F4F4F4</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#201E20</color>
+    <color name="colorPrimary">#201E20</color>
     <color name="colorPink">#CB6882</color>
+    <color name="shimmerBase0">#c2c2c2</color>
+    <color name="shimmerHighlight0">#ffffff</color>
+    <color name="shimmerHighlight1">#DFDEDE</color>
 </resources>

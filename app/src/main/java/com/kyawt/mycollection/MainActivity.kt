@@ -1,11 +1,12 @@
 package com.kyawt.mycollection
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.kyawt.mycollection.view.ui.SignUpFragment
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        setupNavigation()
         setupNavigation()
     }
+
 
     private fun setupNavigation(){
 
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.categoryFragment || destination.id == R.id.collectionFragment || destination.id == R.id.loginFragment || destination.id == R.id.loginDashboardFragment || destination.id == R.id.signUpFragment){
+            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.collectionItemsFragment || destination.id == R.id.collectionDetailFragment){
                 bottomNav.visibility = View.GONE
             }else{
                 bottomNav.visibility = View.VISIBLE

@@ -15,13 +15,11 @@ private val mClickListener: ClickListener) : RecyclerView.ViewHolder(itemView) {
             .load(photo.urls.regular)
             .into(itemView.img_home)
 
-        itemView.txt_user_name.text = photo.user.instagramUsername
+        itemView.txt_user_name.text = photo.user.name
 
         Glide.with(itemView)
-            .load(photo.user.profileImage.small)
+            .load(photo.user.profileImage.medium)
             .into(itemView.img_user)
-        itemView.txt_like_no.text = photo.likes.toString()
-
         itemView.rootView.setOnClickListener {
             mClickListener.Onclick(photo)
         }

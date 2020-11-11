@@ -2,6 +2,7 @@ package com.kyawt.mycollection.service.repository
 
 import com.kyawt.mycollection.service.model.collection.Collection
 import com.kyawt.mycollection.service.model.collectionDetail.CollectionDetail
+import com.kyawt.mycollection.service.model.collectionItem.CollectionItem
 import com.kyawt.mycollection.service.model.detail.Detail
 import com.kyawt.mycollection.service.model.photo.Photo
 import retrofit2.http.GET
@@ -20,7 +21,8 @@ interface PhotoService {
     suspend fun getCategories() : Collection
 
     @GET("collections/{id}/photos?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
-    suspend fun getCategory(
+    suspend fun getCollectionItems(
         @Path("id") category_id : String
-    ) : CollectionDetail
+    ) : CollectionItem
+
 }

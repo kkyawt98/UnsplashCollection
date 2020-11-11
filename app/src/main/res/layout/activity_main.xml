@@ -26,5 +26,4 @@
         app:menu="@menu/menu"
         app:itemIconTint="#CB6882"
         app:itemTextColor="@color/colorAccent"/>
-
 </RelativeLayout>

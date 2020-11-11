@@ -7,9 +7,9 @@ import com.kyawt.mycollection.service.model.collection.CollectionItem
 import com.kyawt.mycollection.view.exts.bindView
 import com.kyawt.mycollection.view.viewholder.CollectionViewHolder
 
-class CollectionAdapter(var collectionList: List<CollectionItem> = emptyList()): RecyclerView.Adapter<CollectionViewHolder>(){
+class CollectionAdapter(private val  mClickListener : CollectionViewHolder.ClickListener, var collectionList: List<CollectionItem> = emptyList()): RecyclerView.Adapter<CollectionViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
-        return CollectionViewHolder(parent.context.bindView(R.layout.item_collection,parent))
+        return CollectionViewHolder(parent.context.bindView(R.layout.item_collection,parent), mClickListener)
     }
 
     override fun getItemCount(): Int = collectionList.size

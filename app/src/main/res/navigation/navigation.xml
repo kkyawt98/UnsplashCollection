@@ -5,21 +5,7 @@
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.kyawt.mycollection.view.ui.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_photoDetailFragment"
-            app:destination="@id/photoDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_collectionFragment"
-            app:destination="@id/collectionFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/photoDetailFragment"
         android:name="com.kyawt.mycollection.view.ui.PhotoDetailFragment"
@@ -29,14 +15,7 @@
             android:id="@+id/action_photoDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.kyawt.mycollection.view.ui.CategoryFragment"
-        android:label="CategoryFragment" >
-        <action
-            android:id="@+id/action_categoryFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/collectionFragment"
         android:name="com.kyawt.mycollection.view.ui.CollectionFragment"
@@ -45,46 +24,38 @@
         <action
             android:id="@+id/action_collectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_collectionFragment_to_photoDetailFragment"
+            app:destination="@id/photoDetailFragment" />
+        <action
+            android:id="@+id/action_collectionFragment_to_collectionItemsFragment"
+            app:destination="@id/collectionItemsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/collectionItemsFragment"
+        android:name="com.kyawt.mycollection.view.ui.CollectionItemsFragment"
+        android:label="fragment_collection_items"
+        tools:layout="@layout/fragment_collection_items" >
+        <action
+            android:id="@+id/action_collectionItemsFragment_to_collectionDetailFragment"
+            app:destination="@id/collectionDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.kyawt.mycollection.view.ui.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.kyawt.mycollection.view.ui.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/homeFragment"
+        android:name="com.kyawt.mycollection.view.ui.HomeFragment"
+        android:label="HomeFragment" >
         <action
-            android:id="@+id/action_loginFragment_to_loginDashboardFragment"
-            app:destination="@id/loginDashboardFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            android:id="@+id/action_homeFragment_to_photoDetailFragment"
+            app:destination="@id/photoDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginDashboardFragment"
-        android:name="com.kyawt.mycollection.view.ui.LoginDashboardFragment"
-        android:label="fragment_login_dashboard"
-        tools:layout="@layout/fragment_login_dashboard" >
+        android:id="@+id/collectionDetailFragment"
+        android:name="com.kyawt.mycollection.view.ui.CollectionDetailFragment"
+        android:label="CollectionDetailFragment" >
         <action
-            android:id="@+id/action_loginDashboardFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_loginDashboardFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.kyawt.mycollection.view.ui.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
-        <action
-            android:id="@+id/action_signUpFragment_to_loginDashboardFragment"
-            app:destination="@id/loginDashboardFragment" />
-        <action
-            android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_collectionDetailFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
     </fragment>
 </navigation>

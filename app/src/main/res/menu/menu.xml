@@ -9,8 +9,4 @@
         android:title="Collection"
         android:icon="@drawable/ic_collection"/>
 
-    <item android:id="@+id/accountFragment"
-        android:title="Account"
-        android:icon="@drawable/ic_account"/>
-
 </menu>

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.kyawt.mycollection.service.model.collection.CollectionItem
 import com.kyawt.mycollection.service.model.detail.Detail
 import com.kyawt.mycollection.service.model.detail.Exif
 import com.kyawt.mycollection.service.model.photo.Photo
@@ -16,6 +17,7 @@ import java.io.IOException
 
 class PhotoDetailViewModel(application: Application) : AndroidViewModel(application){
     var photoID : MutableLiveData<PhotoItem> = MutableLiveData()
+
     val detailData : LiveData<PhotoItem>
     get() = photoID
 

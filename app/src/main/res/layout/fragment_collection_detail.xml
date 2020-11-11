@@ -7,12 +7,8 @@
 
         <variable
             name="detail"
-            type="com.kyawt.mycollection.viewmodel.PhotoDetailViewModel" />
+            type="com.kyawt.mycollection.viewmodel.CollectionDetailViewModel" />
     </data>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragmentDetail"
@@ -20,21 +16,43 @@
             android:layout_height="wrap_content"
             tools:context=".view.ui.PhotoDetailFragment">
 
-            <include
-                android:id="@+id/appbar"
-                layout="@layout/appbar_layout"
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/appBar"
+                android:layout_width="0dp"
                 android:layout_height="?attr/actionBarSize"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintRight_toRightOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <ImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_close"
+                        app:tint="#CB6882"
+                        android:elevation="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:id="@+id/img_detail"
-                BindImage="@{detail.detailData.component15().full}"
+                BindImage="@{detail.photoDetail.component21().full}"
                 android:layout_width="match_parent"
                 android:layout_height="325dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/top"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -363,5 +381,4 @@
                 </androidx.cardview.widget.CardView>
             </com.skydoves.androidveil.VeilLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </layout>
