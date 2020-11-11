@@ -72,4 +72,11 @@ class CollectionDetailFragment : Fragment() {
             findNavController().navigate(R.id.action_collectionDetailFragment_to_collectionFragment)
         }
     }
+
+
+    private fun actions(){
+        viewBinding.txtUserName.setOnClickListener {
+            findNavController().navigate(R.id.action_collectionDetailFragment_to_collectionFragment)
+        }
+    }
 }

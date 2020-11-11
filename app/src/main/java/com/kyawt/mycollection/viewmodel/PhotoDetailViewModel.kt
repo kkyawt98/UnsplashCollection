@@ -39,4 +39,5 @@ class PhotoDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
 
     }
+
 }

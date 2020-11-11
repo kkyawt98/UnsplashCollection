@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/photosFragment"
+        android:title="Photos"
+        android:checked="true"
+        android:iconTint="@color/colorAccent"/>
+
+    <item android:id="@+id/likesFragment"
+        android:title="Likes"
+        android:iconTint="@color/colorAccent"/>
+
+    <item android:id="@+id/collectionsFragment"
+        android:title="Collections"
+        android:iconTint="@color/colorAccent"/>
+
+</menu>

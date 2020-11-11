@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.kyawt.mycollection.R
 import com.kyawt.mycollection.databinding.FragmentPhotoDetailBinding
@@ -65,23 +66,33 @@ class PhotoDetailFragment : Fragment() {
         val photo_id = detail.id.toString()
         photoDetailViewModel.loadData(photo_id)
 
+        val username = detail.user.username
+
         appBarAction()
+        actions(username)
     }
 
 
-    fun appBarAction() {
+    private fun appBarAction() {
 
         txt_close.setOnClickListener {
             findNavController().navigate(R.id.action_photoDetailFragment_to_homeFragment)
         }
     }
 
-//    companion object{
-//        fun newInstance(photo: PhotoItem) = PhotoDetailFragment().also {
-//            val bundle = Bundle()
-//            bundle.putParcelable(Constant.Bundle_Key,photo)
-//            it.arguments = bundle
-//        }
-//    }
+    private fun actions(username : String){
+        var bundle = Bundle()
+        bundle.putString(Constant.Bundle_Username,username)
+        this.arguments = bundle
+        val navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.nav_default_enter_anim)
+            .setExitAnim(R.anim.nav_default_exit_anim)
+            .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
+            .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
+            .build()
+        viewBinding.userLayout.setOnClickListener {
+            findNavController().navigate(R.id.action_photoDetailFragment_to_userFragment, bundle, navOptions)
+        }
+    }
 
 }

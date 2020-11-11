@@ -78,30 +78,41 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imgUser"
-                            BindImage="@{detail.detailData.user.profileImage.component1()}"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="48dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_launcher_background"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtUserName"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/userLayout"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="@{detail.detailData.user.name}"
-                            android:textAllCaps="false"
-                            android:textColor="#CB6882"
-                            android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/imgUser"
-                            app:layout_constraintLeft_toRightOf="@id/imgUser"
-                            app:layout_constraintTop_toTopOf="@id/imgUser" />
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imgUser"
+                                BindImage="@{detail.detailData.user.profileImage.component1()}"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="48dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_launcher_background"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/txtUserName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/display_flash_dark"
+                                android:text="@{detail.detailData.user.name}"
+                                android:textAllCaps="false"
+                                android:textColor="#CB6882"
+                                android:layout_gravity="center"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@id/imgUser"
+                                app:layout_constraintLeft_toRightOf="@id/imgUser"
+                                app:layout_constraintTop_toTopOf="@id/imgUser" />
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/txt_make"
@@ -115,7 +126,7 @@
                             android:textColor="#7E7878"
                             android:textSize="12sp"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgUser" />
+                            app:layout_constraintTop_toBottomOf="@id/userLayout" />
 
                         <TextView
                             android:id="@+id/txt_make_value"
