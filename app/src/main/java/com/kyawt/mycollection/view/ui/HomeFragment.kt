@@ -1,6 +1,7 @@
 package com.kyawt.mycollection.view.ui
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,12 @@ import com.kyawt.mycollection.R
 import com.kyawt.mycollection.service.model.photo.PhotoItem
 import com.kyawt.mycollection.view.adapter.PhotoListAdapter
 import com.kyawt.mycollection.view.constance.Constant
+import com.kyawt.mycollection.view.utils.ShimmerUtils
 import com.kyawt.mycollection.view.viewholder.PhotoListViewHolder
 import com.kyawt.mycollection.viewmodel.CollectionViewModel
 import com.kyawt.mycollection.viewmodel.PhotoListViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_photo_detail.*
 
 class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
     lateinit var photoListViewModel: PhotoListViewModel
@@ -43,16 +46,10 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
         recycler_photo.apply {
             photoListAdapter = PhotoListAdapter(this@HomeFragment)
             viewManager = LinearLayoutManager(context)
+            this.visibility = View.VISIBLE
             this.adapter = photoListAdapter
             this.layoutManager = viewManager
         }
-
-//        recycler_category.apply {
-//            categoryAdapter =  CategoryAdapter(this@HomeFragment)
-//            viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
-//            this.adapter = categoryAdapter
-//            this.layoutManager = viewManager
-//        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -60,14 +57,7 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
         photoListViewModel.loadData()
         collectionViewModel.loadData()
         observeViewModel()
-//        buttons()
     }
-
-//    private fun buttons(){
-//        img_viewAll.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_collectionFragment)
-//        }
-//    }
 
     fun observeViewModel(){
         photoListViewModel.photoResult.observe(this, Observer { isSuccess ->
@@ -83,14 +73,7 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
                 recycler_photo.visibility = View.INVISIBLE
             }
         })
-//
-//        categoriesViewModel.collectionResult.observe(this, Observer { isSuccess ->
-//            recycler_category.visibility = View.VISIBLE
-//            categoryAdapter.updateList(isSuccess)
-//        })
-
         photoListViewModel.loadData()
-//        categoriesViewModel.loadData()
     }
 
     override fun onResume() {

@@ -51,11 +51,15 @@ class UserFragment : Fragment() {
         val username = arguments?.getString(Constant.Bundle_Username)
         username?.let { userViewModel.loadData(it) }
 
-        setupTabs()
+        username?.let { setupTabs(it) }
         onBackPressed()
     }
 
-    private fun setupTabs() {
+    private fun setupTabs(username : String) {
+        val bundle = Bundle()
+        bundle.putString(Constant.Bundle_Username,username)
+        this.arguments = bundle
+
         // Tabs Customization
         tab_layout.setSelectedTabIndicatorColor(Color.WHITE)
 //        tab_layout.tabTextColors = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
@@ -63,7 +67,7 @@ class UserFragment : Fragment() {
         val numberOfTabs = 3
         tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
         // Set the ViewPager Adapter
-        val adapter = TabsPagerAdapter(requireFragmentManager(), lifecycle, numberOfTabs)
+        val adapter = TabsPagerAdapter(requireFragmentManager(), lifecycle, numberOfTabs,bundle )
         tabs_viewpager.adapter = adapter
 
         // Enable Swipe

@@ -4,6 +4,7 @@ import com.kyawt.mycollection.service.model.collectionItem.CollectionItem
 import com.kyawt.mycollection.service.model.detail.Detail
 import com.kyawt.mycollection.service.model.photo.Photo
 import com.kyawt.mycollection.service.model.users.Users
+import com.kyawt.mycollection.service.usersPhotos.UsersPhotos
 
 class PhotoRepository {
     val service = ServiceProvider.getService()
@@ -25,6 +26,10 @@ class PhotoRepository {
 
     suspend fun getUser(username:String) : Users{
         return service.getUsers(username)
+    }
+
+    suspend fun getUserPhotos(username: String) : UsersPhotos{
+        return service.getUsersPhotos(username)
     }
 
 }

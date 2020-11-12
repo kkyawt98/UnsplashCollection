@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.ui.CollectionsFragment
 import com.kyawt.mycollection.view.ui.LikesFragment
 import com.kyawt.mycollection.view.ui.PhotosFragment
 
-class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int) : FragmentStateAdapter(fm, lifecycle) {
+class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int, var bundleUsername: Bundle) : FragmentStateAdapter(
+    fm,
+    lifecycle
+) {
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
@@ -17,7 +21,8 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 val bundle = Bundle()
                 bundle.putString("fragmentName", "Photos")
                 val photosFragment = PhotosFragment()
-                photosFragment.arguments = bundle
+                photosFragment.arguments = bundleUsername
+//                photosFragment.arguments = bundle
                 return photosFragment
             }
             1 -> {
