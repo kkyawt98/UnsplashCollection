@@ -1,9 +1,9 @@
-package com.kyawt.mycollection.service.model.random
+package com.kyawt.mycollection.service.model.usersCollections
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Urls(
+data class UrlsX(
     @SerializedName("full")
     val full: String,
     @SerializedName("raw")

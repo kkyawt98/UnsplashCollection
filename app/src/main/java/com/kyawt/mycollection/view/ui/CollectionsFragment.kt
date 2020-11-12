@@ -1,33 +1,30 @@
 package com.kyawt.mycollection.view.ui
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
+import com.kyawt.mycollection.view.adapter.CollectionsAdapter
+import com.kyawt.mycollection.view.constance.Constant
+import com.kyawt.mycollection.view.exts.logd
+import com.kyawt.mycollection.view.utils.ShimmerUtils
+import com.kyawt.mycollection.viewmodel.CollectionsViewModel
+import kotlinx.android.synthetic.main.fragment_collections.*
+import kotlinx.android.synthetic.main.fragment_likes.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CollectionsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CollectionsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    lateinit var collectionsAdapter: CollectionsAdapter
+    lateinit var viewManager: LinearLayoutManager
+    lateinit var collectionsViewModel: CollectionsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        collectionsViewModel = ViewModelProviders.of(this).get(CollectionsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -38,23 +35,41 @@ class CollectionsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_collections, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CollectionsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CollectionsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val username = arguments?.getString(Constant.Bundle_Username)
+        logd("collections", username.toString())
+
+        username?.let { collectionsViewModel.loadData(it) }
+        setupRecycler()
+
+        collectionsViewModel.collectionsResult.observe(this, Observer { result ->
+            recyclerCollections.visibility = View.VISIBLE
+            collectionsAdapter.updateList(result)
+        })
+
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        shimmerCollectionsLayout.shimmer = ShimmerUtils.getGrayShimmer(context!!)
+        recyclerCollections.shimmer = ShimmerUtils.getGrayShimmer(context!!)
+        // delay-auto-unveil
+        Handler().postDelayed({
+            shimmerCollectionsLayout.unVeil()
+            recyclerCollections.unVeil()
+        }, 800)
+    }
+
+    private fun setupRecycler(){
+        collectionsAdapter = CollectionsAdapter()
+        viewManager = LinearLayoutManager(context)
+        recyclerCollections.apply {
+            this.visibility = View.VISIBLE
+            this.setAdapter(collectionsAdapter)
+            this.setLayoutManager(viewManager)
+        }
+        collectionsAdapter.notifyDataSetChanged()
+    }
+
 }

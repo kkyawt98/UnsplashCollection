@@ -5,6 +5,7 @@ import com.kyawt.mycollection.service.model.collectionItem.CollectionItem
 import com.kyawt.mycollection.service.model.detail.Detail
 import com.kyawt.mycollection.service.model.photo.Photo
 import com.kyawt.mycollection.service.model.users.Users
+import com.kyawt.mycollection.service.model.usersCollections.UsersCollections
 import com.kyawt.mycollection.service.model.usersLiked.UsersLiked
 import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotos
 import retrofit2.http.GET
@@ -41,5 +42,10 @@ interface PhotoService {
     suspend fun getUsersLikes(
         @Path("username") userName: String
     ) : UsersLiked
+
+    @GET("users/{username}/collections?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
+    suspend fun getUsersCollections(
+        @Path("username") userName: String
+    ) : UsersCollections
 
 }

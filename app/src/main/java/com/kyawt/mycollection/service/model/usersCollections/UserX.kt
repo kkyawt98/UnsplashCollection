@@ -1,9 +1,9 @@
-package com.kyawt.mycollection.service.model.random
+package com.kyawt.mycollection.service.model.usersCollections
 
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class UserX(
     @SerializedName("accepted_tos")
     val acceptedTos: Boolean,
     @SerializedName("bio")
@@ -17,7 +17,7 @@ data class User(
     @SerializedName("last_name")
     val lastName: String,
     @SerializedName("links")
-    val links: LinksX,
+    val links: LinksXXXX,
     @SerializedName("location")
     val location: String,
     @SerializedName("name")
@@ -25,7 +25,7 @@ data class User(
     @SerializedName("portfolio_url")
     val portfolioUrl: String,
     @SerializedName("profile_image")
-    val profileImage: ProfileImage,
+    val profileImage: ProfileImageX,
     @SerializedName("total_collections")
     val totalCollections: Int,
     @SerializedName("total_likes")

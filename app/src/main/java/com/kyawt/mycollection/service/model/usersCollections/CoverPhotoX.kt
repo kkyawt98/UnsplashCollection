@@ -1,11 +1,11 @@
-package com.kyawt.mycollection.service.model.random
+package com.kyawt.mycollection.service.model.usersCollections
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Random(
+data class CoverPhotoX(
     @SerializedName("alt_description")
-    val altDescription: String,
+    val altDescription: Any,
     @SerializedName("categories")
     val categories: List<Any>,
     @SerializedName("color")
@@ -16,10 +16,6 @@ data class Random(
     val currentUserCollections: List<Any>,
     @SerializedName("description")
     val description: String,
-    @SerializedName("downloads")
-    val downloads: Int,
-    @SerializedName("exif")
-    val exif: Exif,
     @SerializedName("height")
     val height: Int,
     @SerializedName("id")
@@ -29,21 +25,17 @@ data class Random(
     @SerializedName("likes")
     val likes: Int,
     @SerializedName("links")
-    val links: Links,
-    @SerializedName("location")
-    val location: Location,
+    val links: LinksXXX,
     @SerializedName("promoted_at")
-    val promotedAt: String,
+    val promotedAt: Any,
     @SerializedName("sponsorship")
     val sponsorship: Any,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("urls")
-    val urls: Urls,
+    val urls: UrlsXX,
     @SerializedName("user")
-    val user: User,
-    @SerializedName("views")
-    val views: Int,
+    val user: UserX,
     @SerializedName("width")
     val width: Int
 )

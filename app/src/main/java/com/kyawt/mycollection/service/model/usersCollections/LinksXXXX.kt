@@ -1,9 +1,9 @@
-package com.kyawt.mycollection.service.model.random
+package com.kyawt.mycollection.service.model.usersCollections
 
 
 import com.google.gson.annotations.SerializedName
 
-data class LinksX(
+data class LinksXXXX(
     @SerializedName("followers")
     val followers: String,
     @SerializedName("following")
