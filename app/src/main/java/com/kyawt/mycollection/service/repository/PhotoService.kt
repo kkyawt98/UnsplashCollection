@@ -1,12 +1,12 @@
 package com.kyawt.mycollection.service.repository
 
 import com.kyawt.mycollection.service.model.collection.Collection
-import com.kyawt.mycollection.service.model.collectionDetail.CollectionDetail
 import com.kyawt.mycollection.service.model.collectionItem.CollectionItem
 import com.kyawt.mycollection.service.model.detail.Detail
 import com.kyawt.mycollection.service.model.photo.Photo
 import com.kyawt.mycollection.service.model.users.Users
-import com.kyawt.mycollection.service.usersPhotos.UsersPhotos
+import com.kyawt.mycollection.service.model.usersLiked.UsersLiked
+import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotos
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -36,5 +36,10 @@ interface PhotoService {
     suspend fun getUsersPhotos(
         @Path("username") userName: String
     ): UsersPhotos
+
+    @GET("users/{username}/likes?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
+    suspend fun getUsersLikes(
+        @Path("username") userName: String
+    ) : UsersLiked
 
 }

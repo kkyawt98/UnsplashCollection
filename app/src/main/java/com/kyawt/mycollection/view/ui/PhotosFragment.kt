@@ -74,8 +74,4 @@ class PhotosFragment : Fragment() {
         }
         photosAdapter.notifyDataSetChanged()
     }
-
-
-
-
 }

@@ -3,7 +3,7 @@ package com.kyawt.mycollection.view.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kyawt.mycollection.R
-import com.kyawt.mycollection.service.usersPhotos.UsersPhotosItem
+import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.exts.bindView
 import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.view.viewholder.PhotosViewHolder

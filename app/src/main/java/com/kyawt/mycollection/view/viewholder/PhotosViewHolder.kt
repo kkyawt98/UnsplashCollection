@@ -10,9 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
-import com.kyawt.mycollection.service.usersPhotos.UsersPhotosItem
-import com.kyawt.mycollection.view.exts.logd
-import kotlinx.android.synthetic.main.fragment_photos.view.*
+import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import kotlinx.android.synthetic.main.item_photos.view.*
 
 class PhotosViewHolder(var v: View) : RecyclerView.ViewHolder(v) {

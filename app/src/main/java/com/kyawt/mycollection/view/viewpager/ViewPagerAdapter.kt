@@ -29,14 +29,16 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 val bundle = Bundle()
                 bundle.putString("fragmentName", "Likes")
                 val likesFragment = LikesFragment()
-                likesFragment.arguments = bundle
+                likesFragment.arguments = bundleUsername
+//                likesFragment.arguments = bundle
                 return likesFragment
             }
             2 -> {
                 val bundle = Bundle()
                 bundle.putString("fragmentName", "Collections")
                 val collectionsFragment = CollectionsFragment()
-                collectionsFragment.arguments = bundle
+                collectionsFragment.arguments = bundleUsername
+//                collectionsFragment.arguments = bundle
                 return collectionsFragment
             }
             else -> return PhotosFragment()

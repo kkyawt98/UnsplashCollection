@@ -1,4 +1,4 @@
-package com.kyawt.mycollection.service.usersPhotos
+package com.kyawt.mycollection.service.model.usersLiked
 
 
 import com.google.gson.annotations.SerializedName

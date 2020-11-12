@@ -1,9 +1,9 @@
-package com.kyawt.mycollection.service.usersPhotos
+package com.kyawt.mycollection.service.model.usersLiked
 
 
 import com.google.gson.annotations.SerializedName
 
-data class UsersPhotosItem(
+data class UsersLikedItem(
     @SerializedName("alt_description")
     val altDescription: String,
     @SerializedName("blur_hash")

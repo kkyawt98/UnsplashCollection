@@ -1,4 +1,4 @@
-package com.kyawt.mycollection.service.usersPhotos
+package com.kyawt.mycollection.service.model.usersLiked
 
 
 import com.google.gson.annotations.SerializedName
@@ -15,11 +15,11 @@ data class User(
     @SerializedName("instagram_username")
     val instagramUsername: String,
     @SerializedName("last_name")
-    val lastName: Any,
+    val lastName: String,
     @SerializedName("links")
     val links: LinksX,
     @SerializedName("location")
-    val location: String,
+    val location: Any,
     @SerializedName("name")
     val name: String,
     @SerializedName("portfolio_url")
@@ -33,7 +33,7 @@ data class User(
     @SerializedName("total_photos")
     val totalPhotos: Int,
     @SerializedName("twitter_username")
-    val twitterUsername: String,
+    val twitterUsername: Any,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("username")
