@@ -6,27 +6,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
+import com.kyawt.mycollection.service.model.usersLiked.UsersLikedItem
+import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.adapter.LikesAdapter
 import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.view.utils.ShimmerUtils
+import com.kyawt.mycollection.view.viewholder.LikesViewHolder
 import com.kyawt.mycollection.viewmodel.LikesViewModel
 import kotlinx.android.synthetic.main.fragment_likes.*
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class LikesFragment : Fragment() {
+class LikesFragment(private val fragClick : LikesFragment.likeClickListener) : Fragment(), LikesViewHolder.ClickListener {
 
     lateinit var likesAdapter: LikesAdapter
     lateinit var likesViewModel: LikesViewModel
-    lateinit var viewManager : LinearLayoutManager
+    lateinit var viewManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         likesViewModel = ViewModelProviders.of(this).get(LikesViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -63,8 +70,8 @@ class LikesFragment : Fragment() {
         }, 800)
     }
 
-    private fun setupRecycler(){
-        likesAdapter = LikesAdapter()
+    private fun setupRecycler() {
+        likesAdapter = LikesAdapter(this)
         viewManager = LinearLayoutManager(context)
         recyclerLiked.apply {
             this.visibility = View.VISIBLE
@@ -73,5 +80,22 @@ class LikesFragment : Fragment() {
         }
 
         likesAdapter.notifyDataSetChanged()
+    }
+
+    override fun Onclick(photo: UsersLikedItem) {
+//        val bundle = Bundle()
+//        bundle.putParcelable(Constant.Bundle_Likes, photo)
+//        this.arguments = bundle
+//        val likedDetailFragment = LikedDetailFragment()
+//        likedDetailFragment.arguments = bundle
+//        fragmentManager?.beginTransaction()?.replace(R.id.container, likedDetailFragment)
+//            ?.addToBackStack(null)?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//            ?.commit()
+        fragClick.fragmentClick(photo)
+
+    }
+
+    interface likeClickListener{
+        fun fragmentClick(photo: UsersLikedItem)
     }
 }

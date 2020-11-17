@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
@@ -21,6 +22,7 @@ import com.kyawt.mycollection.viewmodel.CollectionViewModel
 import com.kyawt.mycollection.viewmodel.PhotoListViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_photo_detail.*
+import kotlinx.android.synthetic.main.fragment_home.loadingBar as loadingBar1
 
 class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
     lateinit var photoListViewModel: PhotoListViewModel
@@ -61,15 +63,15 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
 
     fun observeViewModel(){
         photoListViewModel.photoResult.observe(this, Observer { isSuccess ->
-            loadingBar.visibility = View.GONE
+            loadingBar1.visibility = View.GONE
             recycler_photo.visibility = View.VISIBLE
             photoListAdapter.updateList(isSuccess)
         })
 
         photoListViewModel.getLoading().observe(this, Observer { isLoading ->
-            loadingBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            loadingBar1.visibility = if (isLoading) View.VISIBLE else View.GONE
             if (isLoading){
-                loadingBar.visibility = View.VISIBLE
+                loadingBar1.visibility = View.VISIBLE
                 recycler_photo.visibility = View.INVISIBLE
             }
         })
@@ -79,7 +81,6 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
     override fun onResume() {
         super.onResume()
         photoListViewModel.loadData()
-//        categoriesViewModel.loadData()
     }
 
     override fun Onclick(photo: PhotoItem) {
@@ -92,8 +93,13 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
             .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
             .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
             .build()
+//
+//        val photoDetailFragment = PhotoDetailFragment()
+//        photoDetailFragment.arguments = bundle
+//        fragmentManager?.beginTransaction()?.replace(R.id.container, photoDetailFragment)
+//            ?.addToBackStack(null)?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//            ?.commit()
         findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment,bundle,navOptions)
-
     }
 
 }

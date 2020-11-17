@@ -6,12 +6,13 @@ import com.kyawt.mycollection.R
 import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.exts.bindView
 import com.kyawt.mycollection.view.exts.logd
+import com.kyawt.mycollection.view.viewholder.PhotoListViewHolder
 import com.kyawt.mycollection.view.viewholder.PhotosViewHolder
 
-class PhotosAdapter(var photosList: List<UsersPhotosItem> = emptyList()) :
+class PhotosAdapter(private val mClickListener: PhotosViewHolder.ClickListener, var photosList: List<UsersPhotosItem> = emptyList()) :
     RecyclerView.Adapter<PhotosViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
-        return PhotosViewHolder(parent.context.bindView(R.layout.item_photos, parent))
+        return PhotosViewHolder(parent.context.bindView(R.layout.item_photos, parent),mClickListener)
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {

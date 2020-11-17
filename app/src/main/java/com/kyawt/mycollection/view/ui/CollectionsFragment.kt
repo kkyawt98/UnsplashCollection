@@ -47,7 +47,6 @@ class CollectionsFragment : Fragment() {
             recyclerCollections.visibility = View.VISIBLE
             collectionsAdapter.updateList(result)
         })
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -71,5 +70,4 @@ class CollectionsFragment : Fragment() {
         }
         collectionsAdapter.notifyDataSetChanged()
     }
-
 }

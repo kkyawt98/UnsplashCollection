@@ -19,7 +19,7 @@
             <com.skydoves.androidveil.VeilRecyclerFrameView
                 android:id="@+id/recyclerPhotos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:veilFrame_shimmerEnable="true"
                 app:veilFrame_veiled="true"

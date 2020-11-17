@@ -5,12 +5,11 @@
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
 
-
     <fragment
         android:id="@+id/photoDetailFragment"
         android:name="com.kyawt.mycollection.view.ui.PhotoDetailFragment"
         android:label="fragment_photo_detail"
-        tools:layout="@layout/fragment_photo_detail" >
+        tools:layout="@layout/fragment_photo_detail">
         <action
             android:id="@+id/action_photoDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -23,7 +22,7 @@
         android:id="@+id/collectionFragment"
         android:name="com.kyawt.mycollection.view.ui.CollectionFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" >
+        tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_collectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -40,7 +39,7 @@
         android:id="@+id/collectionItemsFragment"
         android:name="com.kyawt.mycollection.view.ui.CollectionItemsFragment"
         android:label="fragment_collection_items"
-        tools:layout="@layout/fragment_collection_items" >
+        tools:layout="@layout/fragment_collection_items">
         <action
             android:id="@+id/action_collectionItemsFragment_to_collectionDetailFragment"
             app:destination="@id/collectionDetailFragment" />
@@ -48,7 +47,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.kyawt.mycollection.view.ui.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_photoDetailFragment"
             app:destination="@id/photoDetailFragment" />
@@ -56,18 +55,56 @@
     <fragment
         android:id="@+id/collectionDetailFragment"
         android:name="com.kyawt.mycollection.view.ui.CollectionDetailFragment"
-        android:label="CollectionDetailFragment" >
+        android:label="CollectionDetailFragment">
         <action
             android:id="@+id/action_collectionDetailFragment_to_collectionFragment"
             app:destination="@id/collectionFragment" />
+        <action
+            android:id="@+id/action_collectionDetailFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.kyawt.mycollection.view.ui.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" >
+        tools:layout="@layout/fragment_user">
         <action
             android:id="@+id/action_userFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_userPhotosDetailFragment"
+            app:destination="@id/userPhotosDetailFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_likedDetailFragment"
+            app:destination="@id/likedDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/likesFragment"
+        android:name="com.kyawt.mycollection.view.ui.LikesFragment"
+        android:label="fragment_likes"
+        tools:layout="@layout/fragment_likes"/>
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.kyawt.mycollection.view.ui.PhotosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos"/>
+    <fragment
+        android:id="@+id/likedDetailFragment"
+        android:name="com.kyawt.mycollection.view.ui.LikedDetailFragment"
+        android:label="LikedDetailFragment">
+        <action
+            android:id="@+id/action_likedDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_likedDetailFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userPhotosDetailFragment"
+        android:name="com.kyawt.mycollection.view.ui.UserPhotosDetailFragment"
+        android:label="UserPhotosDetailFragment" >
+        <action
+            android:id="@+id/action_userPhotosDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

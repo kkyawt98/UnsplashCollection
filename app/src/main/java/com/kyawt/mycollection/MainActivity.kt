@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.collectionItemsFragment || destination.id == R.id.collectionDetailFragment|| destination.id == R.id.userFragment){
+            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.collectionItemsFragment || destination.id == R.id.collectionDetailFragment|| destination.id == R.id.userFragment || destination.id == R.id.userPhotosDetailFragment || destination.id == R.id.likedDetailFragment){
                 bottomNav.visibility = View.GONE
             }else{
                 bottomNav.visibility = View.VISIBLE

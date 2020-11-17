@@ -6,19 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
+import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.adapter.PhotosAdapter
 import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.view.utils.ShimmerUtils
+import com.kyawt.mycollection.view.viewholder.PhotosViewHolder
 import com.kyawt.mycollection.viewmodel.PhotosViewModel
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class PhotosFragment : Fragment() {
+class PhotosFragment(private val fragClick : PhotosFragment.FragmentClickListener) : Fragment() , PhotosViewHolder.ClickListener{
     lateinit var photosViewModel: PhotosViewModel
     lateinit var photosAdapter: PhotosAdapter
     lateinit var viewManager :LinearLayoutManager
@@ -44,6 +49,7 @@ class PhotosFragment : Fragment() {
             shimmerPhotoLayout.unVeil()
             recyclerPhotos.unVeil()
         }, 800)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,10 +68,11 @@ class PhotosFragment : Fragment() {
             recyclerPhotos.visibility = View.VISIBLE
             photosAdapter.updateList(result)
         })
+
     }
 
     private fun setupRecycler(){
-        photosAdapter = PhotosAdapter()
+        photosAdapter = PhotosAdapter(this)
         recyclerPhotos.apply {
             viewManager = GridLayoutManager( context, 2)
             this.visibility = View.VISIBLE
@@ -73,5 +80,14 @@ class PhotosFragment : Fragment() {
             this.setLayoutManager(viewManager)
         }
         photosAdapter.notifyDataSetChanged()
+    }
+
+    override fun Onclick(photo: UsersPhotosItem) {
+        fragClick.fragmentClick(photo)
+
+    }
+
+    interface FragmentClickListener{
+        fun fragmentClick(photo: UsersPhotosItem)
     }
 }

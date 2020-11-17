@@ -13,28 +13,25 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.kyawt.mycollection.R
+import com.kyawt.mycollection.databinding.FragmentLikedDetailBinding
 import com.kyawt.mycollection.databinding.FragmentPhotoDetailBinding
-import com.kyawt.mycollection.service.model.collection.CollectionItem
-import com.kyawt.mycollection.service.model.photo.PhotoItem
 import com.kyawt.mycollection.service.model.usersLiked.UsersLikedItem
-import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.constance.Constant
-import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.view.utils.ShimmerUtils
+import com.kyawt.mycollection.viewmodel.LikedDetailViewModel
 import com.kyawt.mycollection.viewmodel.PhotoDetailViewModel
 import kotlinx.android.synthetic.main.appbar_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_liked_detail.*
 import kotlinx.android.synthetic.main.fragment_photo_detail.*
-import java.util.zip.Inflater
 
-class PhotoDetailFragment : Fragment() {
-    lateinit var photoDetailViewModel: PhotoDetailViewModel
-    lateinit var viewBinding: FragmentPhotoDetailBinding
+class LikedDetailFragment : Fragment() {
+    lateinit var likedDetailViewModel: LikedDetailViewModel
+    lateinit var viewBinding: FragmentLikedDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        photoDetailViewModel = ViewModelProviders.of(this).get(PhotoDetailViewModel::class.java)
+        likedDetailViewModel = ViewModelProviders.of(this).get(LikedDetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -42,76 +39,58 @@ class PhotoDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_photo_detail, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_liked_detail, container, false)
         // Inflate the layout for this fragment
         return viewBinding.root
+        // Inflate the layout for this fragment
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        shimmerLayout.shimmer = ShimmerUtils.getGrayShimmer(context!!)
+        shimmerLikedDetailLayout.shimmer = ShimmerUtils.getGrayShimmer(context!!)
         // delay-auto-unveil
         Handler().postDelayed({
-            shimmerLayout.unVeil()
+            shimmerLikedDetailLayout.unVeil()
         }, 3000)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.apply {
-            lifecycleOwner = this@PhotoDetailFragment
-            detail = photoDetailViewModel
+            lifecycleOwner = this@LikedDetailFragment
+            detail = likedDetailViewModel
         }
-//
-            arguments?.getParcelable<PhotoItem>(Constant.Bundle_Key)?.let {
-                photoDetailViewModel.setID(it)
-                val photo_id = it.id
-                photoDetailViewModel.loadData(photo_id)
 
+
+        arguments?.getParcelable<UsersLikedItem>(Constant.Bundle_Likes)?.let {
+            val photosID = it.id
+            photosID.let { ID ->
+                likedDetailViewModel.loadData(ID)
                 val username = it.user.username
                 actions(username)
             }
 
+        }
         appBarAction()
     }
 
-
     private fun appBarAction() {
         txt_close.setOnClickListener {
-            findNavController().navigate(R.id.action_photoDetailFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_likedDetailFragment_to_homeFragment)
+//
         }
     }
 
     private fun actions(username: String) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString(Constant.Bundle_Username, username)
         this.arguments = bundle
-        val navOptions = NavOptions.Builder()
-            .setEnterAnim(R.anim.nav_default_enter_anim)
-            .setExitAnim(R.anim.nav_default_exit_anim)
-            .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
-            .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
-            .build()
         viewBinding.userLayout.setOnClickListener {
             findNavController().navigate(
-                R.id.action_photoDetailFragment_to_userFragment,
-                bundle,
-                navOptions
+                R.id.action_likedDetailFragment_to_userFragment,
+                bundle
             )
         }
     }
-
-//    private fun observeViewModel() {
-//        photoDetailViewModel.photoDetail.observe(this, Observer { isSuccess ->
-//            loadingBar.visibility = View.GONE
-//        })
-//
-//        photoDetailViewModel.getLoading().observe(this, Observer { isLoading ->
-//            loadingBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-//            if (isLoading) {
-//                loadingBar.visibility = View.VISIBLE
-//            }
-//        })
-//    }
 
 }

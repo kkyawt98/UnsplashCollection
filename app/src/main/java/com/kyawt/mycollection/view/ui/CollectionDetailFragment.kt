@@ -63,8 +63,10 @@ class CollectionDetailFragment : Fragment() {
         collectionDetailViewModel.setID(collectionItem!!)
 
         val photo_id = collectionItem.id
+        val username = collectionItem.user.username
         collectionDetailViewModel.loadData(photo_id)
         onBackPressed()
+        actions(username)
     }
 
     private fun onBackPressed(){
@@ -73,10 +75,11 @@ class CollectionDetailFragment : Fragment() {
         }
     }
 
-
-    private fun actions(){
+    private fun actions(username : String){
+        var bundle = Bundle()
+        bundle.putString(Constant.Bundle_Username,username)
         viewBinding.txtUserName.setOnClickListener {
-            findNavController().navigate(R.id.action_collectionDetailFragment_to_collectionFragment)
+            findNavController().navigate(R.id.action_collectionDetailFragment_to_userFragment,bundle)
         }
     }
 }
