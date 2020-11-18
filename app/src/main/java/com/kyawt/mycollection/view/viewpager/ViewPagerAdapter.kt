@@ -12,7 +12,7 @@ import com.kyawt.mycollection.view.ui.PhotosFragment
 import com.kyawt.mycollection.view.viewholder.LikesViewHolder
 import com.kyawt.mycollection.view.viewholder.PhotosViewHolder
 
-class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int, var bundleUsername: Bundle, private val photoClickListener: PhotosFragment.FragmentClickListener, private val likeClickListener: LikesFragment.likeClickListener) : FragmentStateAdapter(
+class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int, var bundleUsername: Bundle, private val photoClickListener: PhotosFragment.FragmentClickListener, private val likeClickListener: LikesFragment.likeClickListener, private val collectionClickListener: CollectionsFragment.collectionsClickListener) : FragmentStateAdapter(
     fm,
     lifecycle
 ) {
@@ -37,7 +37,7 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
             2 -> {
                 val bundle = Bundle()
 //                bundle.putString("fragmentName", "Collections")
-                val collectionsFragment = CollectionsFragment()
+                val collectionsFragment = CollectionsFragment(collectionClickListener)
                 collectionsFragment.arguments = bundleUsername
 //                collectionsFragment.arguments = bundle
                 return collectionsFragment

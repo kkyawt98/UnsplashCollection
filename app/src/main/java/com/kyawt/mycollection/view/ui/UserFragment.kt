@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,6 +18,7 @@ import com.kyawt.mycollection.R
 import com.kyawt.mycollection.databinding.FragmentPhotoDetailBinding
 import com.kyawt.mycollection.databinding.FragmentUserBinding
 import com.kyawt.mycollection.service.model.users.Users
+import com.kyawt.mycollection.service.model.usersCollections.UsersCollectionsItem
 import com.kyawt.mycollection.service.model.usersLiked.UsersLikedItem
 import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotosItem
 import com.kyawt.mycollection.view.constance.Constant
@@ -31,7 +33,7 @@ import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : Fragment(), PhotosViewHolder.ClickListener,
     PhotosFragment.FragmentClickListener,
-    LikesFragment.likeClickListener {
+    LikesFragment.likeClickListener,CollectionsFragment.collectionsClickListener {
     lateinit var userViewModel: UserViewModel
     lateinit var viewBinding: FragmentUserBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +88,7 @@ class UserFragment : Fragment(), PhotosViewHolder.ClickListener,
         tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
         // Set the ViewPager Adapter
         val adapter =
-            TabsPagerAdapter(requireFragmentManager(), lifecycle, numberOfTabs, bundle, this, this)
+            TabsPagerAdapter(requireFragmentManager(), lifecycle, numberOfTabs, bundle, this, this,this)
         tabs_viewpager.adapter = adapter
 
         // Enable Swipe
@@ -144,6 +146,19 @@ class UserFragment : Fragment(), PhotosViewHolder.ClickListener,
         bundle.putParcelable(Constant.Bundle_Likes, photo)
         this.arguments = bundle
         findNavController().navigate(R.id.action_userFragment_to_likedDetailFragment, bundle)
+    }
+
+    override fun fragClick(users: UsersCollectionsItem) {
+        var bundle = Bundle()
+        bundle.putParcelable(Constant.Bundle_Key,users)
+        this.arguments = bundle
+        val navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.nav_default_enter_anim)
+            .setExitAnim(R.anim.nav_default_exit_anim)
+            .setPopEnterAnim(R.anim.nav_default_pop_enter_anim)
+            .setPopExitAnim(R.anim.nav_default_pop_exit_anim)
+            .build()
+        findNavController().navigate(R.id.action_userFragment_to_usersCollectionsItemFragment,bundle,navOptions)
     }
 
 }

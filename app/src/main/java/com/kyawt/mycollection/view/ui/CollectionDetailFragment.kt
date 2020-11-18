@@ -49,7 +49,7 @@ class CollectionDetailFragment : Fragment() {
         // delay-auto-unveil
         Handler().postDelayed({
             shimmerLayout.unVeil()
-        }, 800)
+        }, 2000)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

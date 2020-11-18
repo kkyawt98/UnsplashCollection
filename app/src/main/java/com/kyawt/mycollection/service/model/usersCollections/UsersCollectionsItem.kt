@@ -1,8 +1,11 @@
 package com.kyawt.mycollection.service.model.usersCollections
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class UsersCollectionsItem(
     @SerializedName("cover_photo")
     val coverPhoto: CoverPhoto,
@@ -36,4 +39,4 @@ data class UsersCollectionsItem(
     val updatedAt: String,
     @SerializedName("user")
     val user: UserXX
-)
+):Parcelable

@@ -10,15 +10,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kyawt.mycollection.R
+import com.kyawt.mycollection.service.model.usersCollections.UsersCollectionsItem
 import com.kyawt.mycollection.view.adapter.CollectionsAdapter
 import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.exts.logd
 import com.kyawt.mycollection.view.utils.ShimmerUtils
+import com.kyawt.mycollection.view.viewholder.CollectionsViewHolder
 import com.kyawt.mycollection.viewmodel.CollectionsViewModel
 import kotlinx.android.synthetic.main.fragment_collections.*
 import kotlinx.android.synthetic.main.fragment_likes.*
 
-class CollectionsFragment : Fragment() {
+class CollectionsFragment(private val fragClickListener:CollectionsFragment.collectionsClickListener) : Fragment(), CollectionsViewHolder.userCollectionsClickListener {
     lateinit var collectionsAdapter: CollectionsAdapter
     lateinit var viewManager: LinearLayoutManager
     lateinit var collectionsViewModel: CollectionsViewModel
@@ -61,7 +63,7 @@ class CollectionsFragment : Fragment() {
     }
 
     private fun setupRecycler(){
-        collectionsAdapter = CollectionsAdapter()
+        collectionsAdapter = CollectionsAdapter(this)
         viewManager = LinearLayoutManager(context)
         recyclerCollections.apply {
             this.visibility = View.VISIBLE
@@ -69,5 +71,13 @@ class CollectionsFragment : Fragment() {
             this.setLayoutManager(viewManager)
         }
         collectionsAdapter.notifyDataSetChanged()
+    }
+
+    override fun collectionClick(users: UsersCollectionsItem) {
+        fragClickListener.fragClick(users)
+    }
+
+    interface collectionsClickListener{
+        fun fragClick(users:UsersCollectionsItem)
     }
 }

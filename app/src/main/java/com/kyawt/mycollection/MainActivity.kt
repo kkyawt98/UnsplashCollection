@@ -21,16 +21,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun setupNavigation(){
+    private fun setupNavigation() {
 
         val navController = findNavController(R.id.container)
 
         bottomNav.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.collectionItemsFragment || destination.id == R.id.collectionDetailFragment|| destination.id == R.id.userFragment || destination.id == R.id.userPhotosDetailFragment || destination.id == R.id.likedDetailFragment){
+            if (destination.id == R.id.photoDetailFragment || destination.id == R.id.collectionItemsFragment || destination.id == R.id.collectionDetailFragment || destination.id == R.id.userFragment || destination.id == R.id.userPhotosDetailFragment || destination.id == R.id.likedDetailFragment || destination.id == R.id.usersCollectionsItemFragment) {
                 bottomNav.visibility = View.GONE
-            }else{
+            } else {
                 bottomNav.visibility = View.VISIBLE
             }
         }

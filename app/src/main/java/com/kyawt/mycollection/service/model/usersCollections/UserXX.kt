@@ -1,13 +1,16 @@
 package com.kyawt.mycollection.service.model.usersCollections
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class UserXX(
     @SerializedName("accepted_tos")
     val acceptedTos: Boolean,
     @SerializedName("bio")
-    val bio: Any,
+    val bio: String,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("id")
@@ -15,7 +18,7 @@ data class UserXX(
     @SerializedName("instagram_username")
     val instagramUsername: String,
     @SerializedName("last_name")
-    val lastName: Any,
+    val lastName: String,
     @SerializedName("links")
     val links: LinksXXXXX,
     @SerializedName("location")
@@ -38,4 +41,4 @@ data class UserXX(
     val updatedAt: String,
     @SerializedName("username")
     val username: String
-)
+):Parcelable

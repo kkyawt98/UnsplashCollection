@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_userFragment_to_likedDetailFragment"
             app:destination="@id/likedDetailFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_usersCollectionsItemFragment"
+            app:destination="@id/usersCollectionsItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/likesFragment"
@@ -106,5 +109,13 @@
         <action
             android:id="@+id/action_userPhotosDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usersCollectionsItemFragment"
+        android:name="com.kyawt.mycollection.view.ui.UsersCollectionsItemFragment"
+        android:label="UsersCollectionsItemFragment" >
+        <action
+            android:id="@+id/action_usersCollectionsItemFragment_to_collectionDetailFragment"
+            app:destination="@id/collectionDetailFragment" />
     </fragment>
 </navigation>
