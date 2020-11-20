@@ -9,11 +9,18 @@ import com.kyawt.mycollection.service.model.usersCollections.UsersCollections
 import com.kyawt.mycollection.service.model.usersLiked.UsersLiked
 import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotos
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PhotoService {
+
+    @Headers("X-Total: 346")
+
     @GET("photos/?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
-    suspend fun getPhotoList(): Photo
+    suspend fun getPhotoList(
+        @Query("page") page : Int
+    ): Photo
 
     @GET("photos/{id}?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
     suspend fun getPhotoDetail(

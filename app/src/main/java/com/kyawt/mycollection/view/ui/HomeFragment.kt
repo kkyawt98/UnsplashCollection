@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +17,7 @@ import com.kyawt.mycollection.R
 import com.kyawt.mycollection.service.model.photo.PhotoItem
 import com.kyawt.mycollection.view.adapter.PhotoListAdapter
 import com.kyawt.mycollection.view.constance.Constant
+import com.kyawt.mycollection.view.utils.PaginationScrollListener
 import com.kyawt.mycollection.view.utils.ShimmerUtils
 import com.kyawt.mycollection.view.viewholder.PhotoListViewHolder
 import com.kyawt.mycollection.viewmodel.CollectionViewModel
@@ -24,11 +26,14 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_photo_detail.*
 import kotlinx.android.synthetic.main.fragment_home.loadingBar as loadingBar1
 
-class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
+class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
     lateinit var photoListViewModel: PhotoListViewModel
     private var collectionViewModel: CollectionViewModel = CollectionViewModel()
     lateinit var photoListAdapter: PhotoListAdapter
-    lateinit var viewManager:LinearLayoutManager
+    lateinit var viewManager: LinearLayoutManager
+    lateinit var photos: PhotoItem
+
+    var page = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         photoListViewModel = ViewModelProviders.of(this).get(PhotoListViewModel::class.java)
@@ -48,44 +53,64 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
         recycler_photo.apply {
             photoListAdapter = PhotoListAdapter(this@HomeFragment)
             viewManager = LinearLayoutManager(context)
+            this.setHasFixedSize(true)
             this.visibility = View.VISIBLE
             this.adapter = photoListAdapter
             this.layoutManager = viewManager
+        }
+        swipe.setOnRefreshListener {
+            swipe.isRefreshing = false
+            loadingBar1.visibility = View.GONE
+            page++
+            photoListViewModel.loadData(page)
+//            swipeRefresh.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+//                if (v != null) {
+//                    if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight){
+//                        page++
+//                        photoListViewModel.loadData(page)
+//                    }
+//                }
+//            }
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        photoListViewModel.loadData()
+//        photoListViewModel.loadData(page)
         collectionViewModel.loadData()
         observeViewModel()
     }
 
-    fun observeViewModel(){
+    fun observeViewModel() {
         photoListViewModel.photoResult.observe(this, Observer { isSuccess ->
             loadingBar1.visibility = View.GONE
             recycler_photo.visibility = View.VISIBLE
             photoListAdapter.updateList(isSuccess)
+            val totalpage = isSuccess.size
+            val total = page
+
+
         })
 
         photoListViewModel.getLoading().observe(this, Observer { isLoading ->
             loadingBar1.visibility = if (isLoading) View.VISIBLE else View.GONE
-            if (isLoading){
+            if (isLoading) {
                 loadingBar1.visibility = View.VISIBLE
                 recycler_photo.visibility = View.INVISIBLE
             }
         })
-        photoListViewModel.loadData()
+        photoListViewModel.loadData(page)
     }
 
     override fun onResume() {
         super.onResume()
-        photoListViewModel.loadData()
+        photoListViewModel.loadData(page)
     }
+
 
     override fun Onclick(photo: PhotoItem) {
         var bundle = Bundle()
-        bundle.putParcelable(Constant.Bundle_Key,photo)
+        bundle.putParcelable(Constant.Bundle_Key, photo)
         this.arguments = bundle
         val navOptions = NavOptions.Builder()
             .setEnterAnim(R.anim.nav_default_enter_anim)
@@ -99,7 +124,11 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener{
 //        fragmentManager?.beginTransaction()?.replace(R.id.container, photoDetailFragment)
 //            ?.addToBackStack(null)?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
 //            ?.commit()
-        findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment,bundle,navOptions)
+        findNavController().navigate(
+            R.id.action_homeFragment_to_photoDetailFragment,
+            bundle,
+            navOptions
+        )
     }
 
 }

@@ -23,7 +23,6 @@ class PhotosViewHolder(
         Glide.with(v).load(users.urls.full)
             .placeholder(android.R.drawable.progress_indeterminate_horizontal)
             .error(android.R.drawable.stat_notify_error).into(v.imgPhotos)
-
         itemView.rootView.setOnClickListener {
             mClickListener.Onclick(users)
         }
