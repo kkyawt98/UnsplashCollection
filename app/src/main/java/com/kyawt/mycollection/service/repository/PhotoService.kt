@@ -19,7 +19,8 @@ interface PhotoService {
 
     @GET("photos/?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
     suspend fun getPhotoList(
-        @Query("page") page : Int
+        @Query("page") page : Int,
+        @Query("per_page") per_page : Int
     ): Photo
 
     @GET("photos/{id}?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
@@ -28,7 +29,10 @@ interface PhotoService {
     ) : Detail
 
     @GET("collections/?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
-    suspend fun getCategories() : Collection
+    suspend fun getCategories(
+        @Query("page") page : Int,
+        @Query("per_page") per_page : Int
+    ) : Collection
 
     @GET("collections/{id}/photos?client_id=LUXItNFXZ3sV5SW_HCtr6olQfgxhBClz0PVWUfHtEBY")
     suspend fun getCollectionItems(

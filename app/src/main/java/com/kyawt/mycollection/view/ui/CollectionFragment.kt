@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
@@ -17,12 +18,17 @@ import com.kyawt.mycollection.view.constance.Constant
 import com.kyawt.mycollection.view.viewholder.CollectionViewHolder
 import com.kyawt.mycollection.viewmodel.CollectionViewModel
 import kotlinx.android.synthetic.main.fragment_collection.*
+import kotlinx.android.synthetic.main.fragment_collection.loadingBar
+import kotlinx.android.synthetic.main.fragment_collection.swipeRefresh
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class CollectionFragment : Fragment(), CollectionViewHolder.ClickListener {
 
     lateinit var categoryViewModel: CollectionViewModel
     lateinit var collectionAdapter: CollectionAdapter
     lateinit var viewManager: LinearLayoutManager
+    var page = 1
+    var per_page = 30
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryViewModel = ViewModelProviders.of(this).get(CollectionViewModel::class.java)
@@ -45,11 +51,27 @@ class CollectionFragment : Fragment(), CollectionViewHolder.ClickListener {
             this.adapter = collectionAdapter
             this.layoutManager = viewManager
         }
+
+        swipeRefresh.setOnRefreshListener {
+            swipeRefresh.isRefreshing = false
+            page++
+            categoryViewModel.loadData(page, per_page)
+        }
+
+        scrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v != null) {
+                if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight){
+                    loadingBar.visibility = View.VISIBLE
+                    page++
+                    categoryViewModel.loadData(page,per_page)
+                }
+            }
+            }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        categoryViewModel.loadData()
+        categoryViewModel.loadData(page,per_page)
         observeViewModel()
     }
 
@@ -70,7 +92,7 @@ class CollectionFragment : Fragment(), CollectionViewHolder.ClickListener {
 
     override fun onResume() {
         super.onResume()
-        categoryViewModel.loadData()
+        categoryViewModel.loadData(page,per_page)
     }
 
     override fun OnClick(photo: CollectionItem) {

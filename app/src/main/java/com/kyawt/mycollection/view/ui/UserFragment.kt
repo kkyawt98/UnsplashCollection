@@ -57,7 +57,7 @@ class UserFragment : Fragment(), PhotosViewHolder.ClickListener,
         shimmerUserLayout.shimmer = ShimmerUtils.getGrayShimmer(context!!)
         // delay-auto-unveil
         Handler().postDelayed({
-            shimmerUserLayout.unVeil()
+            shimmerUserLayout?.unVeil()
         }, 3000)
     }
 

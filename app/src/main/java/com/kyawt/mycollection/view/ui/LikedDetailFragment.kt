@@ -50,7 +50,7 @@ class LikedDetailFragment : Fragment() {
         shimmerLikedDetailLayout.shimmer = ShimmerUtils.getGrayShimmer(context!!)
         // delay-auto-unveil
         Handler().postDelayed({
-            shimmerLikedDetailLayout.unVeil()
+            shimmerLikedDetailLayout?.unVeil()
         }, 3000)
     }
 

@@ -28,12 +28,12 @@ import kotlinx.android.synthetic.main.fragment_home.loadingBar as loadingBar1
 
 class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
     lateinit var photoListViewModel: PhotoListViewModel
-    private var collectionViewModel: CollectionViewModel = CollectionViewModel()
     lateinit var photoListAdapter: PhotoListAdapter
     lateinit var viewManager: LinearLayoutManager
     lateinit var photos: PhotoItem
 
     var page = 1
+    var per_page = 30
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         photoListViewModel = ViewModelProviders.of(this).get(PhotoListViewModel::class.java)
@@ -60,36 +60,34 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
         }
         swipe.setOnRefreshListener {
             swipe.isRefreshing = false
-            loadingBar1.visibility = View.GONE
             page++
-            photoListViewModel.loadData(page)
-//            swipeRefresh.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
-//                if (v != null) {
-//                    if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight){
-//                        page++
-//                        photoListViewModel.loadData(page)
-//                    }
-//                }
-//            }
+            photoListViewModel.loadData(page, per_page)
+        }
+
+        swipeRefresh.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v != null) {
+                if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight){
+                    loadingBar1.visibility = View.VISIBLE
+                    page++
+                    photoListViewModel.loadData(page,per_page)
+                }
+            }
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        photoListViewModel.loadData(page)
-        collectionViewModel.loadData()
+        photoListViewModel.loadData(page,per_page)
         observeViewModel()
     }
 
     fun observeViewModel() {
+        loadingBar1.visibility = View.VISIBLE
+
         photoListViewModel.photoResult.observe(this, Observer { isSuccess ->
             loadingBar1.visibility = View.GONE
             recycler_photo.visibility = View.VISIBLE
             photoListAdapter.updateList(isSuccess)
-            val totalpage = isSuccess.size
-            val total = page
-
-
         })
 
         photoListViewModel.getLoading().observe(this, Observer { isLoading ->
@@ -99,12 +97,12 @@ class HomeFragment : Fragment(), PhotoListViewHolder.ClickListener {
                 recycler_photo.visibility = View.INVISIBLE
             }
         })
-        photoListViewModel.loadData(page)
+        photoListViewModel.loadData(page,per_page)
     }
 
     override fun onResume() {
         super.onResume()
-        photoListViewModel.loadData(page)
+        photoListViewModel.loadData(page,per_page)
     }
 
 

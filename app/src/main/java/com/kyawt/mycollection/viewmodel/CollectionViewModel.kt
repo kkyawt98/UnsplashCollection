@@ -16,10 +16,10 @@ class CollectionViewModel() : ViewModel() {
 
     var photoResult = MutableLiveData<PhotoItem>()
 
-    fun loadData() {
+    fun loadData(page:Int,per_page:Int) {
         viewModelScope.launch {
             try {
-                val result = photoRepository.getCategories()
+                val result = photoRepository.getCategories(page,per_page)
                 collectionResult.value = result
             }catch (e:Exception){
                 Log.d("Collection", e.toString())

@@ -10,16 +10,16 @@ import com.kyawt.mycollection.service.model.usersPhotos.UsersPhotos
 
 class PhotoRepository {
     val service = ServiceProvider.getService()
-    suspend fun getPhotoList(page :Int): Photo {
-        return service.getPhotoList(page)
+    suspend fun getPhotoList(page :Int, per_page : Int): Photo {
+        return service.getPhotoList(page, per_page)
     }
 
     suspend fun getPhotoDetail(photoId : String): Detail{
         return service.getPhotoDetail(photoId)
     }
 
-    suspend fun getCategories() : Collection{
-        return service.getCategories()
+    suspend fun getCategories(page :Int, per_page : Int) : Collection{
+        return service.getCategories(page, per_page)
     }
 
     suspend fun getCollectionItem(collectionId:String) : CollectionItem {

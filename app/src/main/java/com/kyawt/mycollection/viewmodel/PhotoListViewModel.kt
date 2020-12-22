@@ -20,13 +20,13 @@ class PhotoListViewModel(application: Application) : AndroidViewModel(applicatio
     var photoResult = MutableLiveData<Photo>()
     private var photoRepository : PhotoRepository = PhotoRepository()
 
-    fun loadData(page :Int){
+    fun loadData(page :Int, per_page :Int){
 
         loading.value = true
             viewModelScope.launch {
 
                 try {
-                    val result = photoRepository.getPhotoList(page)
+                    val result = photoRepository.getPhotoList(page, per_page)
                     photoResult.value = result
                 }catch (e:Exception){
                     Log.d("List", e.toString())
