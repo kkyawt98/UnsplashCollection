@@ -10,376 +10,388 @@
             type="com.kyawt.mycollection.viewmodel.CollectionDetailViewModel" />
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragmentDetail"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".view.ui.PhotoDetailFragment">
+
+        <!--            <androidx.cardview.widget.CardView-->
+        <!--                android:id="@+id/appBar"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="?attr/actionBarSize"-->
+        <!--                app:cardBackgroundColor="@android:color/transparent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--                app:layout_constraintRight_toRightOf="parent">-->
+
+        <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                    android:id="@+id/appbar"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="?attr/actionBarSize">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/imgBack"-->
+        <!--                        android:layout_width="30dp"-->
+        <!--                        android:layout_height="30dp"-->
+        <!--                        android:src="@drawable/ic_close"-->
+        <!--                        app:tint="#CB6882"-->
+        <!--                        android:elevation="8dp"-->
+        <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                        app:layout_constraintHorizontal_bias="0.1"-->
+        <!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--                        app:layout_constraintStart_toStartOf="parent"-->
+        <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--            </androidx.cardview.widget.CardView>-->
+
+        <ImageView
+            android:id="@+id/txt_collection_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:elevation="8dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/img_detail"
+            BindImage="@{detail.photoDetail.component21().full}"
+            android:layout_width="match_parent"
+            android:layout_height="325dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="@id/img_detail"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLocationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:hint="Unknown"
+            android:text="@{detail.detailData.user.location}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imgLocation"
+            app:layout_constraintLeft_toRightOf="@id/imgLocation"
+            app:layout_constraintTop_toTopOf="@id/imgLocation" />
+
+        <com.skydoves.androidveil.VeilLayout
+            android:id="@+id/shimmerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".view.ui.PhotoDetailFragment">
+            app:layout_constraintTop_toBottomOf="@id/img_detail"
+            app:veilLayout_shimmerEnable="true"
+            app:veilLayout_veiled="true">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/appBar"
-                android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                android:id="@+id/card_detail"
+                android:layout_width="match_parent"
+                android:layout_height="290dp"
+                app:layout_constraintTop_toBottomOf="@id/img_detail">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/appbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imgBack"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_close"
-                        app:tint="#CB6882"
-                        android:elevation="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgUser"
+                        BindImage="@{detail.detailData.user.profileImage.component1()}"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="48dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_launcher_background"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/txtUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="@{detail.detailData.user.name}"
+                        android:textAllCaps="false"
+                        android:textColor="#CB6882"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/imgUser"
+                        app:layout_constraintLeft_toRightOf="@id/imgUser"
+                        app:layout_constraintTop_toTopOf="@id/imgUser" />
 
-            <ImageView
-                android:id="@+id/img_detail"
-                BindImage="@{detail.photoDetail.component21().full}"
-                android:layout_width="match_parent"
-                android:layout_height="325dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_make"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="48dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="Camera"
+                        android:textAllCaps="true"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgUser" />
 
-            <ImageView
-                android:id="@+id/imgLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_location"
-                app:layout_constraintBottom_toBottomOf="@id/img_detail"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_make_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Unknown"
+                        android:text="@{detail.photoDetail.exif.model}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_make"
+                        app:layout_constraintTop_toBottomOf="@id/txt_make" />
 
-            <TextView
-                android:id="@+id/txtLocationName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:hint="Unknown"
-                android:text="@{detail.detailData.user.location}"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/imgLocation"
-                app:layout_constraintLeft_toRightOf="@id/imgLocation"
-                app:layout_constraintTop_toTopOf="@id/imgLocation" />
+                    <TextView
+                        android:id="@+id/txt_aperture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="Aperture"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintBaseline_toBaselineOf="@id/txt_make"
+                        app:layout_constraintHorizontal_bias="0.61"
+                        app:layout_constraintLeft_toRightOf="@id/txt_make"
+                        app:layout_constraintRight_toRightOf="parent" />
 
-            <com.skydoves.androidveil.VeilLayout
-                android:id="@+id/shimmerLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/img_detail"
-                app:veilLayout_shimmerEnable="true"
-                app:veilLayout_veiled="true">
+                    <TextView
+                        android:id="@+id/txt_aperture_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Unknown"
+                        android:text="@{detail.photoDetail.exif.aperture}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_aperture"
+                        app:layout_constraintTop_toBottomOf="@id/txt_aperture" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="290dp"
-                    app:layout_constraintTop_toBottomOf="@id/img_detail">
+                    <TextView
+                        android:id="@+id/txt_exposure_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="Exposure Time"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_make"
+                        app:layout_constraintTop_toBottomOf="@id/txt_make_value" />
+
+                    <TextView
+                        android:id="@+id/txt_exposure_time_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Unknown"
+                        android:text="@{detail.photoDetail.exif.exposureTime}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_exposure_time"
+                        app:layout_constraintTop_toBottomOf="@id/txt_exposure_time" />
+
+                    <TextView
+                        android:id="@+id/txt_focal_length"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="Focal Length"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_aperture"
+                        app:layout_constraintTop_toBottomOf="@id/txt_aperture_value" />
+
+                    <TextView
+                        android:id="@+id/txt_focal_length_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Unknown"
+                        android:text="@{detail.photoDetail.exif.focalLength}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_focal_length"
+                        app:layout_constraintTop_toBottomOf="@id/txt_focal_length" />
+
+                    <TextView
+                        android:id="@+id/txt_iso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="ISO"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_exposure_time"
+                        app:layout_constraintTop_toBottomOf="@id/txt_exposure_time_value" />
+
+                    <TextView
+                        android:id="@+id/txt_iso_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="Unknown"
+                        android:text="@{detail.photoDetail.exif.iso}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_iso"
+                        app:layout_constraintTop_toBottomOf="@id/txt_iso" />
+
+                    <TextView
+                        android:id="@+id/txt_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/display_flash_dark"
+                        android:text="Dimensions"
+                        android:textColor="#7E7878"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_focal_length"
+                        app:layout_constraintTop_toBottomOf="@id/txt_focal_length_value" />
+
+                    <TextView
+                        android:id="@+id/txt_width_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{detail.photoDetail.width }"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/txt_model"
+                        app:layout_constraintTop_toBottomOf="@id/txt_model" />
+
+
+                    <TextView
+                        android:id="@+id/txt_mul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" x "
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@id/txt_width_value"
+                        app:layout_constraintTop_toBottomOf="@id/txt_model" />
+
+                    <TextView
+                        android:id="@+id/txt_height_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{detail.photoDetail.height}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@id/txt_mul"
+                        app:layout_constraintTop_toBottomOf="@id/txt_model" />
+
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="300dp"
+                        android:layout_height="0.5dp"
+                        android:layout_margin="10dp"
+                        android:background="@android:color/darker_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_height_value" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/line">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imgUser"
-                            BindImage="@{detail.detailData.user.profileImage.component1()}"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="48dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_launcher_background"
+                        <TextView
+                            android:id="@+id/txtView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/display_flash_dark"
+                            android:padding="8dp"
+                            android:text="Views"
+                            android:textColor="#7E7878"
+                            android:textSize="12sp"
                             app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/txtDownload"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/txtUserName"
+                            android:id="@+id/txtViewValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="@{detail.detailData.user.name}"
-                            android:textAllCaps="false"
-                            android:textColor="#CB6882"
-                            android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/imgUser"
-                            app:layout_constraintLeft_toRightOf="@id/imgUser"
-                            app:layout_constraintTop_toTopOf="@id/imgUser" />
+                            android:text="@{detail.photoDetail.views}"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="@id/txtView"
+                            app:layout_constraintRight_toRightOf="@id/txtView"
+                            app:layout_constraintTop_toBottomOf="@id/txtView" />
 
                         <TextView
-                            android:id="@+id/txt_make"
+                            android:id="@+id/txtDownload"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="48dp"
-                            android:layout_marginTop="24dp"
                             android:fontFamily="@font/display_flash_dark"
-                            android:text="Camera"
-                            android:textAllCaps="true"
+                            android:padding="8dp"
+                            android:text="Downloads"
                             android:textColor="#7E7878"
                             android:textSize="12sp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgUser" />
+                            app:layout_constraintLeft_toRightOf="@id/txtView"
+                            app:layout_constraintRight_toLeftOf="@id/txtLike"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/txt_make_value"
+                            android:id="@+id/txtDownloadValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Unknown"
-                            android:text="@{detail.photoDetail.exif.model}"
+                            android:text="@{detail.photoDetail.downloads}"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_make"
-                            app:layout_constraintTop_toBottomOf="@id/txt_make" />
+                            app:layout_constraintLeft_toLeftOf="@id/txtDownload"
+                            app:layout_constraintRight_toRightOf="@id/txtDownload"
+                            app:layout_constraintTop_toBottomOf="@id/txtDownload" />
 
                         <TextView
-                            android:id="@+id/txt_aperture"
+                            android:id="@+id/txtLike"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/display_flash_dark"
-                            android:text="Aperture"
+                            android:padding="8dp"
+                            android:text="Likes"
                             android:textColor="#7E7878"
                             android:textSize="12sp"
-                            app:layout_constraintBaseline_toBaselineOf="@id/txt_make"
-                            app:layout_constraintHorizontal_bias="0.61"
-                            app:layout_constraintLeft_toRightOf="@id/txt_make"
-                            app:layout_constraintRight_toRightOf="parent" />
+                            app:layout_constraintLeft_toRightOf="@id/txtDownload"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/txt_aperture_value"
+                            android:id="@+id/txtLikeValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Unknown"
-                            android:text="@{detail.photoDetail.exif.aperture}"
+                            android:text="@{detail.photoDetail.likes}"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_aperture"
-                            app:layout_constraintTop_toBottomOf="@id/txt_aperture" />
+                            app:layout_constraintLeft_toLeftOf="@id/txtLike"
+                            app:layout_constraintRight_toRightOf="@id/txtLike"
+                            app:layout_constraintTop_toBottomOf="@id/txtLike" />
 
-                        <TextView
-                            android:id="@+id/txt_exposure_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="Exposure Time"
-                            android:textColor="#7E7878"
-                            android:textSize="12sp"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_make"
-                            app:layout_constraintTop_toBottomOf="@id/txt_make_value" />
-
-                        <TextView
-                            android:id="@+id/txt_exposure_time_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:hint="Unknown"
-                            android:text="@{detail.photoDetail.exif.exposureTime}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_exposure_time"
-                            app:layout_constraintTop_toBottomOf="@id/txt_exposure_time" />
-
-                        <TextView
-                            android:id="@+id/txt_focal_length"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="Focal Length"
-                            android:textColor="#7E7878"
-                            android:textSize="12sp"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_aperture"
-                            app:layout_constraintTop_toBottomOf="@id/txt_aperture_value" />
-
-                        <TextView
-                            android:id="@+id/txt_focal_length_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:hint="Unknown"
-                            android:text="@{detail.photoDetail.exif.focalLength}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_focal_length"
-                            app:layout_constraintTop_toBottomOf="@id/txt_focal_length" />
-
-                        <TextView
-                            android:id="@+id/txt_iso"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="ISO"
-                            android:textColor="#7E7878"
-                            android:textSize="12sp"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_exposure_time"
-                            app:layout_constraintTop_toBottomOf="@id/txt_exposure_time_value" />
-
-                        <TextView
-                            android:id="@+id/txt_iso_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:hint="Unknown"
-                            android:text="@{detail.photoDetail.exif.iso}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_iso"
-                            app:layout_constraintTop_toBottomOf="@id/txt_iso" />
-
-                        <TextView
-                            android:id="@+id/txt_model"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/display_flash_dark"
-                            android:text="Dimensions"
-                            android:textColor="#7E7878"
-                            android:textSize="12sp"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_focal_length"
-                            app:layout_constraintTop_toBottomOf="@id/txt_focal_length_value" />
-
-                        <TextView
-                            android:id="@+id/txt_width_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{detail.photoDetail.width }"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="@id/txt_model"
-                            app:layout_constraintTop_toBottomOf="@id/txt_model" />
-
-
-                        <TextView
-                            android:id="@+id/txt_mul"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" x "
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toRightOf="@id/txt_width_value"
-                            app:layout_constraintTop_toBottomOf="@id/txt_model" />
-
-                        <TextView
-                            android:id="@+id/txt_height_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{detail.photoDetail.height}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toRightOf="@id/txt_mul"
-                            app:layout_constraintTop_toBottomOf="@id/txt_model" />
-
-                        <View
-                            android:id="@+id/line"
-                            android:layout_width="300dp"
-                            android:layout_height="0.5dp"
-                            android:layout_margin="10dp"
-                            android:background="@android:color/darker_gray"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/txt_height_value" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/line">
-
-                            <TextView
-                                android:id="@+id/txtView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/display_flash_dark"
-                                android:padding="8dp"
-                                android:text="Views"
-                                android:textColor="#7E7878"
-                                android:textSize="12sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toLeftOf="@id/txtDownload"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/txtViewValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{detail.photoDetail.views}"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                app:layout_constraintLeft_toLeftOf="@id/txtView"
-                                app:layout_constraintRight_toRightOf="@id/txtView"
-                                app:layout_constraintTop_toBottomOf="@id/txtView" />
-
-                            <TextView
-                                android:id="@+id/txtDownload"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/display_flash_dark"
-                                android:padding="8dp"
-                                android:text="Downloads"
-                                android:textColor="#7E7878"
-                                android:textSize="12sp"
-                                app:layout_constraintLeft_toRightOf="@id/txtView"
-                                app:layout_constraintRight_toLeftOf="@id/txtLike"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/txtDownloadValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{detail.photoDetail.downloads}"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                app:layout_constraintLeft_toLeftOf="@id/txtDownload"
-                                app:layout_constraintRight_toRightOf="@id/txtDownload"
-                                app:layout_constraintTop_toBottomOf="@id/txtDownload" />
-
-                            <TextView
-                                android:id="@+id/txtLike"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/display_flash_dark"
-                                android:padding="8dp"
-                                android:text="Likes"
-                                android:textColor="#7E7878"
-                                android:textSize="12sp"
-                                app:layout_constraintLeft_toRightOf="@id/txtDownload"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/txtLikeValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{detail.photoDetail.likes}"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                app:layout_constraintLeft_toLeftOf="@id/txtLike"
-                                app:layout_constraintRight_toRightOf="@id/txtLike"
-                                app:layout_constraintTop_toBottomOf="@id/txtLike" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-            </com.skydoves.androidveil.VeilLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </com.skydoves.androidveil.VeilLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

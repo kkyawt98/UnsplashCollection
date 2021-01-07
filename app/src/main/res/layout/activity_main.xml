@@ -24,6 +24,6 @@
         android:background="@color/colorPrimary"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu"
-        app:itemIconTint="#CB6882"
+        app:itemIconTint="@color/colorAccent"
         app:itemTextColor="@color/colorAccent"/>
 </RelativeLayout>

@@ -75,7 +75,7 @@ class LikedDetailFragment : Fragment() {
     }
 
     private fun appBarAction() {
-        txt_close.setOnClickListener {
+        txt_like_close.setOnClickListener {
             findNavController().navigate(R.id.action_likedDetailFragment_to_homeFragment)
 //
         }

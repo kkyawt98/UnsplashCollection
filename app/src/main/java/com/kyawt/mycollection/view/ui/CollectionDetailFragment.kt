@@ -70,7 +70,7 @@ class CollectionDetailFragment : Fragment() {
     }
 
     private fun onBackPressed(){
-        imgBack.setOnClickListener {
+        txt_collection_close.setOnClickListener {
             findNavController().navigate(R.id.action_collectionDetailFragment_to_collectionFragment)
         }
     }

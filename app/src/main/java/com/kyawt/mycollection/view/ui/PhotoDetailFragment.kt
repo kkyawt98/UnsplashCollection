@@ -77,7 +77,7 @@ class PhotoDetailFragment : Fragment() {
 
 
     private fun appBarAction() {
-        txt_close.setOnClickListener {
+        txt_detail_close.setOnClickListener {
             findNavController().navigate(R.id.action_photoDetailFragment_to_homeFragment)
         }
     }
